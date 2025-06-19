@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package environment.v1;
+
+import "google/api/annotations.proto";
+
+// option go_package = "github.com/Shushant2502/my_protos_1/gen/v1";
+option go_package = "environment/v1";
+
+message Environment {
+  string id = 1;
+  string version = 2;
+  string location = 3;
+}
+
+service UserService {
+  rpc GetUser(GetEnvironmentRequest) returns (Environment) {
+    option (google.api.http) = {
+      get: "/v1/users/{id}"
+    };
+  }
+}
+
+message GetEnvironmentRequest {
+  string id = 1;
+}
